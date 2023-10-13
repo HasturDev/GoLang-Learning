@@ -33,10 +33,11 @@ func main() {
 			log.Fatalf("Error pulling repository: %v", err)
 		}
 
-	case "push":
-		// Call the push function (assuming it's named PushRepo)
-
-		statistics.Pushing(repoPath)
+	//case "push":
+	//	// Call the push function (assuming it's named PushRepo)
+	//	if err := statistics.Pushing("."); err != nil {
+	//		log.Fatalf("Failed to push: %s", err)
+	//	}
 
 	case "coverage":
 		// Call the coverage function
