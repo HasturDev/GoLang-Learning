@@ -1,22 +1,23 @@
 package statistics
 
 import (
+	"errors"
 	"fmt"
 	"log"
 	"os"
 
 	git "github.com/go-git/go-git/v5"
+	"github.com/go-git/go-git/v5/config"
 	"github.com/go-git/go-git/v5/plumbing"
 	"github.com/go-git/go-git/v5/plumbing/transport/http"
 )
 
-func pushing() {
+// 	myError := errors.New("WRONG MESSAGE")
+func Pushing(repoPath string) error {
 	if len(os.Args) != 2 {
 		fmt.Println("Usage: push <repository_path>")
-		return
+		return errors.New("An error occured in line 18")
 	}
-
-	repoPath := os.Args[1]
 
 	r, err := git.PlainOpen(repoPath)
 	if err != nil {
@@ -25,9 +26,10 @@ func pushing() {
 
 	// Fetch the latest updates from the remote repository
 	err = r.Fetch(&git.FetchOptions{
-		RefSpecs: []git.ConfigRefSpec{"refs/*:refs/*"},
+		RefSpecs: []config.RefSpec{config.RefSpec("refs/heads/*:refs/heads/*")},
 		Auth:     getAuth(),
 	})
+
 	if err != nil && err != git.NoErrAlreadyUpToDate {
 		log.Fatalf("Failed to fetch: %v", err)
 	}
@@ -64,6 +66,7 @@ func pushing() {
 	} else {
 		fmt.Println("No changes to push.")
 	}
+	return nil
 }
 
 func getAuth() *http.BasicAuth {

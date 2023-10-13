@@ -9,7 +9,7 @@ import (
 )
 
 // coveragePercentage calculates the code coverage percentage of a Go project.
-func coveragePercentage(repoPath string) (float64, error) {
+func CoveragePercentage(repoPath string) (float64, error) {
 	cmd := exec.Command("go", "list", "./...")
 	cmd.Dir = repoPath
 	out, err := cmd.CombinedOutput()

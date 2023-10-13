@@ -17,7 +17,6 @@ func main() {
 
 	command := os.Args[1]
 	repoPath := "./" // Default repository path. Adjust as needed or get it as an argument.
-
 	switch command {
 	case "pull":
 		// Call the pull function (assuming it's named PullRepo)
@@ -28,17 +27,16 @@ func main() {
 		}
 		owner := os.Args[2]
 		repoName := os.Args[3]
-		err := PullRepo(owner, repoName)
+		dir := os.Args[4]
+		err := statistics.PullRepo(dir, owner, repoName)
 		if err != nil {
 			log.Fatalf("Error pulling repository: %v", err)
 		}
 
 	case "push":
 		// Call the push function (assuming it's named PushRepo)
-		err := PushRepo(repoPath)
-		if err != nil {
-			log.Fatalf("Error pushing to repository: %v", err)
-		}
+
+		statistics.Pushing(repoPath)
 
 	case "coverage":
 		// Call the coverage function
@@ -58,13 +56,12 @@ func main() {
 
 	default:
 		fmt.Println("Unknown command:", command)
-	
 
+		// func (r *Repository) Log(o *LogOptions) (object.CommitIter, error)
+		fmt.Println("Welcome to main() function")
+		myCode := statistics.Code{FileSomething: "File1", CodeSomething: "Some Code"}
 
-	// func (r *Repository) Log(o *LogOptions) (object.CommitIter, error)
-	fmt.Println("Welcome to main() function")
-	myCode := statistics.Code{FileSomething: "File1", CodeSomething: "Some Code"}
-
-	result := statistics.Search(myCode)
-	fmt.Println(result)
+		result := statistics.Search(myCode)
+		fmt.Println(result)
+	}
 }
