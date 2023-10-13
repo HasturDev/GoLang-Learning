@@ -18,19 +18,21 @@ func main() {
 	command := os.Args[1]
 	repoPath := "./" // Default repository path. Adjust as needed or get it as an argument.
 	switch command {
-	case "pull":
-		// Call the pull function (assuming it's named PullRepo)
-		// You might need owner and repo name arguments.
-		if len(os.Args) < 4 {
-			fmt.Println("Usage: program pull <owner> <repo_name>")
+	case "clone":
+		if len(os.Args) < 3 {
+			fmt.Println("Usage: clone <repository_https_url> <destination_directory>")
 			return
 		}
-		owner := os.Args[2]
-		repoName := os.Args[3]
-		dir := os.Args[4]
-		err := statistics.PullRepo(dir, owner, repoName)
-		if err != nil {
-			log.Fatalf("Error pulling repository: %v", err)
+
+		repoURL := os.Args[2]
+		destDir := os.Args[3]
+		print("repoURL")
+		print(repoURL) // clone
+		print("destDir")
+		print(destDir) // url
+
+		if err := statistics.CloneRepo(repoURL, destDir); err != nil {
+			log.Fatalf("Failed to clone: %s", err)
 		}
 
 	//case "push":
