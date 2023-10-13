@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/yourusername/yourprojectname/statistics" // Replace with your actual import path
+	statistics "xithulhu.com/Statistics" // the import path
 )
 
 func main() {
