@@ -8,7 +8,7 @@ package main
 import (
 	"fmt"
 
-	statistics "Xinix.Cthulhu.com/Statistics"
+	statistics "xithulhu.com/Statistics"
 )
 
 // Multiple init() function
@@ -25,7 +25,10 @@ func init() {
 
 // Main function
 func main() {
+	// func (r *Repository) Log(o *LogOptions) (object.CommitIter, error)
 	fmt.Println("Welcome to main() function")
+	myCode := statistics.Code{FileSomething: "File1", CodeSomething: "Some Code"}
 
-	statistics.Search()
+	result := statistics.Search(myCode)
+	fmt.Println(result)
 }
