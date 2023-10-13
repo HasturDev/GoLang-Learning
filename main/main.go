@@ -26,10 +26,6 @@ func main() {
 
 		repoURL := os.Args[2]
 		destDir := os.Args[3]
-		print("repoURL")
-		print(repoURL) // clone
-		print("destDir")
-		print(destDir) // url
 
 		if err := statistics.CloneRepo(repoURL, destDir); err != nil {
 			log.Fatalf("Failed to clone: %s", err)
